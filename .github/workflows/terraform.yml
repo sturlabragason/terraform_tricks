@@ -39,7 +39,9 @@ jobs:
         if ($terraformapply){
           terraform apply -auto-approve $custom_apply_flags
         }
+        ls
         cd ..
+        ls
         terraform init
         $terraformapply = "${{ inputs.apply }}"
         $custom_plan_flags = "${{ inputs.custom_plan_flags }}"
