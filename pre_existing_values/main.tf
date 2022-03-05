@@ -14,7 +14,6 @@ resource "random_string" "random" {
 }
 
 resource "local_file" "foo" {
-  count    = length(random_string.random)
-  content  = random_string.random[count.index].result
+  content  = merge(random_string.random.result)
   filename = "./random_string.json"
 }
