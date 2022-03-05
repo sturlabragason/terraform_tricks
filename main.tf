@@ -3,5 +3,5 @@ data "local_file" "foo" {
 }
 
 output "content" {
-  value = data.local_file.foo
+  value = data.local_file.foo.content
 }
