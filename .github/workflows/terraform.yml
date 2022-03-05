@@ -8,11 +8,11 @@ on:
 jobs:
   terraform_job:
     runs-on: ubuntu-latest
-    working-directory: ./populate
     steps:
     - uses: sturlabragason/terraform_state_artifact@v1
       with:
         encryptionkey: ${{ github.GITHUB_ACTION_REPOSITORY }}
+      working-directory: populate
   docs:
     runs-on: ubuntu-latest
     steps:
