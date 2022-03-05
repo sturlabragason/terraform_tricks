@@ -42,16 +42,16 @@ jobs:
       with:
         name: terraformstatefile
         path: ./terraform.tfstate.enc
-  docs:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
-    - name: Render terraform docs and push changes back to PR
-      uses: terraform-docs/gh-actions@main
-      with:
-        working-dir: ./pre_existing_values/
-        output-file: readme.md
-        output-method: inject
-        git-push: "true"
+  # docs:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #     with:
+  #       ref: ${{ github.event.pull_request.head.ref }}
+  #   - name: Render terraform docs and push changes back to PR
+  #     uses: terraform-docs/gh-actions@main
+  #     with:
+  #       working-dir: ./pre_existing_values/
+  #       output-file: readme.md
+  #       output-method: inject
+  #       git-push: "true"
