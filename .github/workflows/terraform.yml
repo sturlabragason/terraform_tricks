@@ -1,0 +1,28 @@
+name: Setup and run Terraform
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron:  '11 11 11 * *'
+jobs:
+  terraform_job:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: sturlabragason/terraform_state_artifact@v1
+      with:
+        encryptionkey: ${{ github.GITHUB_ACTION_REPOSITORY }}
+        custom_apply_flags: '-chdir=populate'
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Render terraform docs and push changes back to PR
+      uses: terraform-docs/gh-actions@main
+      with:
+        working-dir: ./populate/
+        output-file: readme.md
+        output-method: inject
+        git-push: "true"
