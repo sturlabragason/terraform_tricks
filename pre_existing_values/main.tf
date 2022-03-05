@@ -14,6 +14,6 @@ resource "random_string" "random" {
 }
 
 resource "local_file" "foo" {
-  content  =  jsonencode(random_string.random[*].result)
+  content  =  jsondecode(random_string.random[*].result)
   filename = "./random_string.json"
 }
