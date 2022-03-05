@@ -14,6 +14,6 @@ resource "random_string" "random" {
 }
 
 resource "local_file" "foo" {
-    content     = random_string.random
+    content     = jsonencode(random_string.random)
     filename = "${path.module}/random_string.json"
 }
