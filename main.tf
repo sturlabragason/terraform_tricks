@@ -6,7 +6,7 @@ output "content" {
   value = local.file_content
 }
 
-resource "null_resource" "example2" {
+resource "null_resource" "out" {
   for_each = toset(local.file_content)
   provisioner "local-exec" {
     command = "Write-Host '${each.value}' "
