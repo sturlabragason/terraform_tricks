@@ -8,11 +8,13 @@ terraform {
 }
 
 resource "random_string" "random" {
-  length           = 16
-  special          = false
+  count   = 5
+  length  = 16
+  special = false
 }
 
 resource "local_file" "foo" {
-    content     = random_string.random.result
-    filename = "./random_string.json"
+  count    = length(random_string.random.result)
+  content  = random_string.random.result[count.index]
+  filename = "./random_string.json"
 }
