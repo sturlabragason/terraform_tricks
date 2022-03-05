@@ -12,7 +12,7 @@ jobs:
     - uses: sturlabragason/terraform_state_artifact@v1
       with:
         encryptionkey: ${{ github.GITHUB_ACTION_REPOSITORY }}
-        custom_apply_flags: '-chdir=./populate'
+        custom_apply_flags: '-chdir ./populate/'
   docs:
     runs-on: ubuntu-latest
     steps:
