@@ -8,13 +8,11 @@ on:
 jobs:
   terraform_job:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./populate
     steps:
     - uses: sturlabragason/terraform_state_artifact@v1
       with:
         encryptionkey: ${{ github.GITHUB_ACTION_REPOSITORY }}
+        custom_apply_flags: ' -target="random_string.random"'
   docs:
     runs-on: ubuntu-latest
     steps:
