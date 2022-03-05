@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: sturlabragason/terraform_state_artifact@v1
+      working-directory: ./populate
       with:
         encryptionkey: ${{ github.GITHUB_ACTION_REPOSITORY }}
-        custom_apply_flags: '-chdir=populate'
   docs:
     runs-on: ubuntu-latest
     steps:
