@@ -1,3 +1,7 @@
+locals {
+  file_content = flatten([file("./pre_existing_values/random_string.json")])
+}
+
 output "content" {
-  value = file("./pre_existing_values/random_string.json")
+  value = local.file_content
 }
