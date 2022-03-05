@@ -7,7 +7,7 @@ output "content" {
 }
 
 resource "null_resource" "example2" {
-  for_each = local.file_content
+  for_each = [for value in local.file_content : value]
   provisioner "local-exec" {
     command = "Write-Host '${each.value}' "
     interpreter = ["pwsh", "-Command"]
