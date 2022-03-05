@@ -7,8 +7,10 @@ on:
     - cron:  '11 11 11 * *'
 jobs:
   terraform_job:
-    working-directory: ./populate
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./populate
     steps:
     - uses: sturlabragason/terraform_state_artifact@v1
       with:
