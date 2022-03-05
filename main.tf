@@ -1,5 +1,5 @@
 data "local_file" "foo" {
-    filename = "${path.module}/pre_existing_values/random_string.json"
+    filename = "./pre_existing_values/random_string.json"
 }
 
 output "content" {
