@@ -39,6 +39,18 @@ jobs:
         if ($terraformapply){
           terraform apply -auto-approve $custom_apply_flags
         }
+        cd ..
+        terraform init
+        $terraformapply = "${{ inputs.apply }}"
+        $custom_plan_flags = "${{ inputs.custom_plan_flags }}"
+        $custom_apply_flags = "${{ inputs.custom_apply_flags }}"
+        if ($terraformapply -eq "false"){
+          $terraformapply = $false
+        }
+        terraform plan $custom_plan_flags
+        if ($terraformapply){
+          terraform apply -auto-approve $custom_apply_flags
+        }
         $StateExists = Test-Path -Path ./terraform.tfstate -PathType Leaf
         if ($StateExists){
           openssl enc -in ./terraform.tfstate -aes-256-cbc -pbkdf2 -pass pass:"${{ inputs.encryptionkey }}" -out ./terraform.tfstate.enc
