@@ -7,13 +7,13 @@ terraform {
   }
 }
 
-resource "random_string" "random" {
+
+resource "random_uuid" "random" {
   count   = 5
-  length  = 16
-  special = false
 }
 
+
 resource "local_file" "foo" {
-  content  =  jsonencode(random_string.random[*].result)
-  filename = "./random_string.json"
+  content  =  jsonencode(random_uuid.random[*].result)
+  filename = "./random.json"
 }

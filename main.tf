@@ -1,9 +1,5 @@
 locals {
-  file_content = toset(jsondecode(file("./pre_existing_values/random_string.json")))
-}
-
-output "content" {
-  value = local.file_content
+  file_content = toset(jsondecode(file("./pre_existing_values/random.json")))
 }
 
 resource "null_resource" "out" {
