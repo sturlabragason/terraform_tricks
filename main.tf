@@ -1,5 +1,5 @@
 locals {
-  file_content = flatten([jsondecode(file("./pre_existing_values/random_string.json"))])
+  file_content = toset(jsondecode(file("./pre_existing_values/random_string.json")))
 }
 
 output "content" {
@@ -7,7 +7,7 @@ output "content" {
 }
 
 resource "null_resource" "out" {
-  for_each = toset(local.file_content)
+  for_each = local.file_content
   provisioner "local-exec" {
     command = "Write-Host '${each.value}' "
     interpreter = ["pwsh", "-Command"]
